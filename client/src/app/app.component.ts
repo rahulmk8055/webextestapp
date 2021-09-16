@@ -71,7 +71,7 @@ export class AppComponent implements AfterViewInit {
   sent = false;
   chart: any;
   color = '00FF00';
-  meetingId = 1;
+  meetingId : any;
   chartConfig: any = {
     type: 'line',
     data: {
