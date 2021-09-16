@@ -71,7 +71,7 @@ export class AppComponent implements AfterViewInit {
   sent = false;
   chart: any;
   color = '00FF00';
-  meetingId : any;
+  meetingId = 1;
   chartConfig: any = {
     type: 'line',
     data: {
@@ -129,7 +129,7 @@ export class AppComponent implements AfterViewInit {
       app.context.getMeeting().then(
           (meeting: any) => {
             console.log("This is meeting data",{message : meeting})
-            this.meetingId = meeting.id;
+            // this.meetingId = meeting.id;
           }
       ).catch(
           ( error: { message: string; }) => {
