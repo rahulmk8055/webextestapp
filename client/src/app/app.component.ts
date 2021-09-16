@@ -18,29 +18,29 @@ declare var Webex: any ;
 
 var app = new Webex.Application();
 
-var meetingid = 1;
+// var meetingid = 1;
 
-app.onReady().then(() => {
-  console.log("App is ready, getting user info...", {message:'The app is ready.'})
-  app.context.getUser().then(
-    function (user: any) {
-      console.log("This is user data",{message : user})
-    }
-).catch(
-    function (error: { message: string; }) {
-      console.log("getUser promise rejected with " + error.message, {message:"error"});
-    })
-  app.context.getMeeting().then(
-      function (meeting: any) {
-        console.log("This is user data",{message : meeting})
-        meetingid = Number(meeting.conferenceId);
-      }
-  ).catch(
-      function (error: { message: string; }) {
-        console.log("getmeeting promise rejected with " + error.message, {message:"error"});
-      })
- }
-);
+// app.onReady().then(() => {
+//   console.log("App is ready, getting user info...", {message:'The app is ready.'})
+//   app.context.getUser().then(
+//     function (user: any) {
+//       console.log("This is user data",{message : user})
+//     }
+// ).catch(
+//     function (error: { message: string; }) {
+//       console.log("getUser promise rejected with " + error.message, {message:"error"});
+//     })
+//   app.context.getMeeting().then(
+//       function (meeting: any) {
+//         console.log("This is user data",{message : meeting})
+//         meetingid = Number(meeting.conferenceId);
+//       }
+//   ).catch(
+//       function (error: { message: string; }) {
+//         console.log("getmeeting promise rejected with " + error.message, {message:"error"});
+//       })
+//  }
+// );
 
 
 // function log(type: string, data: { message: string; }) {
@@ -71,7 +71,7 @@ export class AppComponent implements AfterViewInit {
   sent = false;
   chart: any;
   color = '00FF00';
-  meetingId = meetingid;
+  meetingId = 1;
   chartConfig: any = {
     type: 'line',
     data: {
@@ -98,6 +98,27 @@ export class AppComponent implements AfterViewInit {
   };
 
   constructor(public appService: AppService) {
+    app.onReady().then(() => {
+      console.log("App is ready, getting user info...", {message:'The app is ready.'})
+      app.context.getUser().then(
+        (user: any) => {
+          console.log("This is user data",{message : user})
+        }
+    ).catch(
+        (error: { message: string; }) => {
+          console.log("getUser promise rejected with " + error.message, {message:"error"});
+        })
+      app.context.getMeeting().then(
+          (meeting: any) => {
+            console.log("This is meeting data",{message : meeting})
+            this.meetingId = meeting.conferenceId;
+          }
+      ).catch(
+          ( error: { message: string; }) => {
+            console.log("getmeeting promise rejected with " + error.message, {message:"error"});
+          })
+     }
+    );
     this.appService.webSocket$.subscribe((res) => {
       this.color = res.status.color;
       this.chartConfig.data.labels.push(res.ts);
@@ -120,6 +141,17 @@ export class AppComponent implements AfterViewInit {
       this.sent = false;
     }, 5 * 1000);
     this.sent = true;
+    console.log(this.meetingId)
     this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
+  }
+
+  handleShare() {
+    // setTimeout(() => {
+    //   this.sent = false;
+    // }, 5 * 1000);
+    // this.sent = true;
+    console.log("Sharing Url https://purrfect-silver-metatarsal.glitch.me");
+    app.setShareUrl("https://purrfect-silver-metatarsal.glitch.me");
+    // this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
   }
 }
