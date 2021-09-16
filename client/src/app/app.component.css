@@ -1,7 +1,31 @@
-.round {
-  border-radius: 10rem;
-  height: 10rem;
-  width: 10rem;
+.traffic-wrapper {
+  border: 2px solid #111;
+  background-color: #555;
+  border-radius: 15px;
+  padding: 1.5rem;
+  max-width: 7.8rem;
+
+  /* height: 9rem; */
+}
+
+/* .protector {
+  width: 180px;
+  top: -0.8rem;
+  left: -35px;
+  border-right: solid 30px transparent;
+  border-left: solid 30px transparent;
+  border-top: solid 90px #333;
+  z-index: -1;
+} */
+
+.traffic-bulb {
+  border-radius: 50%;
+  width: 7.5rem;
+  height: 7.5rem;
+  border: 1px solid #555;
+  transition: background-color 800ms linear;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.2), transparent);
+  background-size: 5px 5px;
 }
 
 .centered {
@@ -9,20 +33,23 @@
   margin-right: auto;
 }
 
-.chart {
-  max-height: 30rem;
-}
-
-.action {
+.button {
   background-color: orange;
-  color: black;
+  color: #333;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
   padding: 0.5rem 1rem;
   border: none;
-  box-shadow: 1px 1px darkgrey;
+  box-shadow: 1px 1px 3px darkgrey;
   cursor: pointer;
   border-radius: 0.4rem;
+  margin: 1rem auto;
+  /* transition: background-color 100ms linear;
+  transition: color 100ms linear; */
 }
 
-.action:active {
-  background-color: red;
-}
+.button:active {
+  background-color: orangered;
+  /* color: white; */
+  box-shadow: none;
+} 

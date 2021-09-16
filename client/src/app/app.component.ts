@@ -80,12 +80,30 @@ export class AppComponent implements AfterViewInit {
         label: "No. of people reported unable to hear",
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgb(255, 99, 132)',
+        tension: 0.2,
         data: [],
       }]
     },
     options: {
       responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          enabled: false
+        }
+      },
       scales: {
+        x: {
+          ticks: {
+            display: false
+          },
+          // type: 'time',
+          title: {
+            display: false
+          }
+        },
         y: {
           min: 0,
           ticks: {
@@ -95,7 +113,7 @@ export class AppComponent implements AfterViewInit {
         }
       }
     },
-  };
+  }; 
 
   constructor(public appService: AppService) {
     app.onReady().then(() => {
@@ -136,13 +154,23 @@ export class AppComponent implements AfterViewInit {
     this.chart = new Chart(this.chartCanvas.nativeElement, this.chartConfig);
   }
 
+  // notAbleToHear() {
+  //   setTimeout(() => {
+  //     this.sent = false;
+  //   }, 5 * 1000);
+  //   this.sent = true;
+  //   console.log("This is the meeting id" + this.meetingId)
+  //   this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
+  // }
   notAbleToHear() {
-    setTimeout(() => {
-      this.sent = false;
-    }, 5 * 1000);
-    this.sent = true;
-    console.log("This is the meeting id" + this.meetingId)
-    this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
+    if (!this.sent) {
+      console.log("This is the meeting id" + this.meetingId)
+      this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
+      setTimeout(() => {
+        this.sent = false;
+      }, 5 * 1000);
+      this.sent = true;
+    }
   }
 
   handleShare() {

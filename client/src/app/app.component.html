@@ -1,13 +1,10 @@
-<div class="centered round" [ngStyle]="{'background-color': '#' + color}"></div>
-
-<div>
-  <button (click)="notAbleToHear()" class="centered action">Not able to hear</button>
+<div class="centered traffic-wrapper" style="position: relative;">
+  <!-- <div class="protector" style="position: absolute;"></div> -->
+  <div class="traffic-bulb" [ngStyle]="{'background-color': '#' + color}"></div>
 </div>
 
-<div>
+<div style="text-align: center;">
+  <canvas #chartCanvas height="100px"></canvas>
+  <button (click)="notAbleToHear()" class="centered button">Not able to hear</button>
   <button (click)="handleShare()" class="centered action">Share</button>
-</div>
-
-<div class="chart">
-  <canvas #chartCanvas></canvas>
 </div>
