@@ -20,30 +20,30 @@ declare var Webex: any ;
 var app = new Webex.Application();
 
 app.onReady().then(() => {
-  log("App is ready, getting user info...", {message:'The app is ready.'})
+  console.log("App is ready, getting user info...", {message:'The app is ready.'})
   app.context.getUser().then(
     function (user: any) {
-        log("This is user data",{message : user})
+      console.log("This is user data",{message : user})
     }
 ).catch(
     function (error: { message: string; }) {
-        log("getUser promise rejected with " + error.message, {message:"error"});
+      console.log("getUser promise rejected with " + error.message, {message:"error"});
     })
   app.context.getMeeting().then(
       function (meeting: any) {
-          log("This is user data",{message : meeting})
+        console.log("This is user data",{message : meeting})
       }
   ).catch(
       function (error: { message: string; }) {
-          log("getmeeting promise rejected with " + error.message, {message:"error"});
+        console.log("getmeeting promise rejected with " + error.message, {message:"error"});
       })
  }
 );
 
 
-function log(type: string, data: { message: string; }) {
-  console.log(data)
-}
+// function log(type: string, data: { message: string; }) {
+//   console.log(data)
+// }
 
 Chart.register(
   LineController,
