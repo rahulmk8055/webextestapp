@@ -18,7 +18,7 @@ declare var Webex: any ;
 
 var app = new Webex.Application();
 
-var meetingid: number;
+var meetingid = 1;
 
 app.onReady().then(() => {
   console.log("App is ready, getting user info...", {message:'The app is ready.'})
