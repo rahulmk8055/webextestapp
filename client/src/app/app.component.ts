@@ -20,16 +20,22 @@ declare var Webex: any ;
 var app = new Webex.Application();
 
 app.onReady().then(() => {
-  console.log('onReady() The app is ready')
-});
+  log("App is ready, getting user info...", {message:'The app is ready.'})
+  app.context.getUser().then(
+    function (user: any) {
+        log("This is user data",{message : user})
+    }
+).catch(
+    function (error: { message: string; }) {
+        log("getUser promise rejected with " + error.message, {message:"error"});
+    })
+ }
+);
 
-// function log(type: string, data: { message: string; }) {
-//   var ul = document.getElementById("console");
-//   var li = document.createElement("li");
-//   var payload = document.createTextNode(`${type}: ${JSON.stringify(data)}`);
-//   li.appendChild(payload)
-//   ul.prepend(li);
-// }
+
+function log(type: string, data: { message: string; }) {
+  console.log(data)
+}
 
 Chart.register(
   LineController,
