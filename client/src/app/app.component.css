@@ -1,0 +1,28 @@
+.round {
+  border-radius: 10rem;
+  height: 10rem;
+  width: 10rem;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chart {
+  max-height: 30rem;
+}
+
+.action {
+  background-color: orange;
+  color: black;
+  padding: 0.5rem 1rem;
+  border: none;
+  box-shadow: 1px 1px darkgrey;
+  cursor: pointer;
+  border-radius: 0.4rem;
+}
+
+.action:active {
+  background-color: red;
+}
