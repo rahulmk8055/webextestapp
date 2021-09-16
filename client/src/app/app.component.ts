@@ -141,7 +141,7 @@ export class AppComponent implements AfterViewInit {
       this.sent = false;
     }, 5 * 1000);
     this.sent = true;
-    console.log(this.meetingId)
+    console.log("This is the meeting id" + this.meetingId)
     this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
   }
 
