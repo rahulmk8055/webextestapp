@@ -42,6 +42,7 @@ webSocket.on('connection', (ws) => {
         ws.send(JSON.stringify({ method, ts: bucket, status: getStatus(meetingId) }));
       }, 5 * 1000);
     }
+    console.log("meeting id is "+ meetingId)
     handler[method]({ meetingId, args });
   });
   ws.on('error', (e) => {
