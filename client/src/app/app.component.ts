@@ -16,8 +16,9 @@ import { AppService } from './app.service';
 
 declare var Webex: any ;
 
-// var let webex-embedded-app-sdk: any; 
 var app = new Webex.Application();
+
+var meetingid: number;
 
 app.onReady().then(() => {
   console.log("App is ready, getting user info...", {message:'The app is ready.'})
@@ -32,6 +33,7 @@ app.onReady().then(() => {
   app.context.getMeeting().then(
       function (meeting: any) {
         console.log("This is user data",{message : meeting})
+        meetingid = Number(meeting.conferenceId);
       }
   ).catch(
       function (error: { message: string; }) {
@@ -69,7 +71,7 @@ export class AppComponent implements AfterViewInit {
   sent = false;
   chart: any;
   color = '00FF00';
-  meetingId = 1;
+  meetingId = meetingid;
   chartConfig: any = {
     type: 'line',
     data: {
