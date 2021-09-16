@@ -29,6 +29,14 @@ app.onReady().then(() => {
     function (error: { message: string; }) {
         log("getUser promise rejected with " + error.message, {message:"error"});
     })
+    app.context.getmeeting().then(
+      function (meeting: any) {
+          log("This is user data",{message : meeting})
+      }
+  ).catch(
+      function (error: { message: string; }) {
+          log("getmeeting promise rejected with " + error.message, {message:"error"});
+      })
  }
 );
 
