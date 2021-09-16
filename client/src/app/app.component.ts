@@ -129,7 +129,7 @@ export class AppComponent implements AfterViewInit {
       app.context.getMeeting().then(
           (meeting: any) => {
             console.log("This is meeting data",{message : meeting})
-            this.meetingId = meeting.conferenceId;
+            this.meetingId = meeting.id;
           }
       ).catch(
           ( error: { message: string; }) => {
@@ -154,24 +154,24 @@ export class AppComponent implements AfterViewInit {
     this.chart = new Chart(this.chartCanvas.nativeElement, this.chartConfig);
   }
 
-  // notAbleToHear() {
-  //   setTimeout(() => {
-  //     this.sent = false;
-  //   }, 5 * 1000);
-  //   this.sent = true;
-  //   console.log("This is the meeting id" + this.meetingId)
-  //   this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
-  // }
   notAbleToHear() {
-    if (!this.sent) {
-      console.log("This is the meeting id" + this.meetingId)
-      this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
-      setTimeout(() => {
-        this.sent = false;
-      }, 5 * 1000);
-      this.sent = true;
-    }
+    // setTimeout(() => {
+    //   this.sent = false;
+    // }, 5 * 1000);
+    // this.sent = true;
+    console.log("This is the meeting id" + this.meetingId)
+    this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
   }
+  // notAbleToHear() {
+  //   if (!this.sent) {
+  //     console.log("This is the meeting id" + this.meetingId)
+  //     this.appService.webSocket$.next({ method: 'cantSeeYou', meetingId: this.meetingId });
+  //     setTimeout(() => {
+  //       this.sent = false;
+  //     }, 5 * 1000);
+  //     this.sent = true;
+  //   }
+  // }
 
   handleShare() {
     // setTimeout(() => {

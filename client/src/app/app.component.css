@@ -52,4 +52,9 @@
   background-color: orangered;
   /* color: white; */
   box-shadow: none;
-} 
+}
+
+.button:disabled {
+  background-color: orangered;
+  cursor: not-allowed;
+  }
